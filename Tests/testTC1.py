@@ -1,9 +1,9 @@
 import unittest
 from selenium import webdriver
-from TestforUS1.Pages.WelcomePage import Welcome
-from TestforUS1.Pages.SignInPage import SignIn
-from TestforUS1.Pages.MainUserPage import MainUserPage
-from TestforUS1.Pages.PaymentsPage import PaymentsPage,PopupItemPayment
+from TestforUS1.Pages.welcomePage import Welcome
+from TestforUS1.Pages.signInPage import SignIn
+from TestforUS1.Pages.mainUserPage import MainUserPage
+from TestforUS1.Pages.paymentsPage import PaymentsPage,PopupItemPayment
 
 class TestTC1(unittest.TestCase):
 

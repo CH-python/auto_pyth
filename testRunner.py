@@ -1,6 +1,6 @@
 import unittest
-import TestforUS1.Tests.TestTC1
-import TestforUS1.Tests.TestTC2
+import TestforUS1.Tests.testTC1
+import TestforUS1.Tests.testTC2
 
 basicSuite = unittest.TestSuite()
 basicSuite.addTest(unittest.makeSuite(TestforUS1.Tests.TestTC1.TestTC1))
