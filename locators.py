@@ -34,5 +34,3 @@ class Locator(object):
     phoneInput = wayToFields + "/div/div/div/fieldset/fieldset/span/div/div/input"
     btnPay = "Button-animationWrapper-child--primary"
     btnClose = "Header-navBack"
-
-
