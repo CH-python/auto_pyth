@@ -10,10 +10,3 @@ class Sign_In(object):
         self.email = self.driver.find_element(By.ID, Locator.user_email)
         self.password = self.driver.find_element(By.ID, Locator.user_password)
         self.submit = self.driver.find_element(By.ID, Locator.login_button)
-
-
-
-
-
-
-
