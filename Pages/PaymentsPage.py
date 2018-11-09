@@ -10,6 +10,3 @@ class PaymentsPage(object):
         # Sign In page locators defining
         self.first_utility_details = driver.find_element(By.XPATH, Locator.first_utility_details)
         self.second_utility_details= driver.find_element(By.XPATH, Locator.second_utility_details)
-
-
-
