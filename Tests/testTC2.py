@@ -63,7 +63,7 @@ class TestTC2(unittest.TestCase):
         # self.driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
         # currentURL = self.driver.Url
 
-    def TearDown(self):
+    def tearDown(self):
         self.driver.close()
 
 if __name__ == "__main__":
