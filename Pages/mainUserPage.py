@@ -10,3 +10,6 @@ class MainUserPage(object):
 
         self.itemPayments = driver.find_element(By.XPATH, Locator.payments)
 
+
+
+
