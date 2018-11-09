@@ -16,6 +16,7 @@ class Locator(object):
     pay = "pay"
     details = "//*[@id='historyTable']/tbody/tr[2]/td[3]/button"
     titlePopup = "//*[@id='myModalLabel']/span"
+    balance = "//*[@id='historyTable']/tbody/tr[2]/td[2]"
 
     #popup_payments: Select payment Sum
     paymentSum = "payment-sum-input"
@@ -33,4 +34,4 @@ class Locator(object):
     btnRememberMe = wayToFields + "/div/fieldset/span"
     phoneInput = wayToFields + "/div/div/div/fieldset/fieldset/span/div/div/input"
     btnPay = "Button-animationWrapper-child--primary"
-    btnClose = "Header-navBack"
+    btnBack = "Header-navBack"
