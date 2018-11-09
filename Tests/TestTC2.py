@@ -58,7 +58,7 @@ class TestTC2(unittest.TestCase):
         self.driver.switch_to.default_content()
 
         # self.driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
-        # currentURL = self.driver.Url test
+        # currentURL = self.driver.Url
 
     def TearDown(self):
         self.driver.close()
