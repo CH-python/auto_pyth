@@ -1,7 +1,6 @@
 from TestforUS1.locators import Locator
 from selenium.webdriver.common.by import By
 
-
 class MainUserPage(object):
 
     def __init__(self, driver):
@@ -48,8 +47,3 @@ class additionalClose(object):
         self.driver = driver
 
         self.btnClose = driver.find_element(By.CLASS_NAME, Locator.btnClose)
-
-
-
-
-

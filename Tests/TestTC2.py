@@ -4,7 +4,6 @@ from TestforUS1.Pages.WelcomePage import Welcome
 from TestforUS1.Pages.SignInPage import Sign_In
 from TestforUS1.Pages.MainUserPage import MainUserPage,popupItemPayment,popupEasyPay,additionalFields,additionalClose
 from TestforUS1.Pages.PaymentsPage import PaymentsPage
-from selenium.webdriver.common.by import By
 
 class TestTC2(unittest.TestCase):
 
