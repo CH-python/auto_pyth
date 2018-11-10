@@ -12,7 +12,7 @@ class TestTC3(unittest.TestCase):
         self.driver = webdriver.Firefox()
         self.driver.get("http://localhost:8080/")
 
-    def test_getToSignIn(self):
+    def testGetToSelectPaymentSum(self):
         welcome = Welcome(self.driver)
         welcome.signIn.click()
 

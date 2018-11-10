@@ -33,6 +33,7 @@ class PopupEasyPay(object):
     def __init__(self, driver):
         self.driver = driver
 
+        self.titlePopupEasyPay = driver.find_element(By.XPATH, Locator.titlePopupEasyPay)
         self.mailInput = driver.find_element(By.XPATH, Locator.mailInput)
         self.cardNumberInput = driver.find_element(By.XPATH, Locator.cardNumberInput)
         self.dateCardInput = driver.find_element(By.XPATH, Locator.dateCardInput)
