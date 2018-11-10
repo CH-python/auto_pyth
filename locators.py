@@ -20,6 +20,7 @@ class Locator(object):
     #popup_payments: Select payment Sum
     paymentSum = "payment-sum-input"
     downloadCheck = "download-check-label"
+    sendCheck = "send-check-label"
     proceed = "payment-proceed"
 
 

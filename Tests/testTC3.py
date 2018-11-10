@@ -3,9 +3,9 @@ from selenium import webdriver
 from TestforUS1.Pages.welcomePage import Welcome
 from TestforUS1.Pages.signInPage import SignIn
 from TestforUS1.Pages.mainUserPage import MainUserPage
-from TestforUS1.Pages.paymentsPage import PaymentsPage,PopupItemPayment
+from TestforUS1.Pages.paymentsPage import PaymentsPage,PopupItemPayment,SelectPaymentSum
 
-class TestTC1(unittest.TestCase):
+class TestTC3(unittest.TestCase):
 
     def setUp(self):
         # self.driver = webdriver.Chrome()
@@ -29,8 +29,21 @@ class TestTC1(unittest.TestCase):
         paymentPage.btnDetails.click()
 
         popupDetails = PopupItemPayment(self.driver)
-        actual = popupDetails.titleDetails.text
-        self.assertEquals(actual, "Utility details");
+        popupDetails.btnPay.click()
+
+        selectPaymentSum = SelectPaymentSum(self.driver)
+
+
+        selectPaymentSum.btnDownloadCheck.click()
+        active = selectPaymentSum.btnDownloadCheck.get_attribute("class")
+        self.assertEqual(active, 'btn btn-default active')
+
+        selectPaymentSum.btnSendCheck.click()
+        self.driver.implicitly_wait(10)
+        active = selectPaymentSum.btnSendCheck.get_attribute("class")
+        self.assertEqual(active, 'btn btn-default active')
+
+
 
     def TearDown(self):
         self.driver.close()

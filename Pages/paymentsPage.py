@@ -25,6 +25,7 @@ class SelectPaymentSum(object):
 
         self.inputPaymentSum = driver.find_element(By.ID, Locator.paymentSum)
         self.btnDownloadCheck = driver.find_element(By.ID, Locator.downloadCheck)
+        self.btnSendCheck = driver.find_element(By.ID, Locator.sendCheck)
         self.btnProceed = driver.find_element(By.ID, Locator.proceed)
 
 class PopupEasyPay(object):

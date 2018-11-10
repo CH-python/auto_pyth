@@ -5,11 +5,11 @@ from TestforUS1.Pages.signInPage import SignIn
 from TestforUS1.Pages.mainUserPage import MainUserPage
 from TestforUS1.Pages.paymentsPage import PaymentsPage,PopupItemPayment,SelectPaymentSum,PopupEasyPay,AdditionalFields,AdditionalClose
 
-class TestTC2(unittest.TestCase):
+class TestTC15(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.Chrome()
-        # self.driver = webdriver.Firefox()
+        # self.driver = webdriver.Chrome()
+        self.driver = webdriver.Firefox()
         self.driver.get("http://localhost:8080/")
 
     def test_getToSignIn(self):
