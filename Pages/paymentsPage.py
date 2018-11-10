@@ -8,15 +8,15 @@ class PaymentsPage(object):
 
         # Sign In page locators defining
 
-        self.btnDetails = driver.find_element(By.XPATH, Locator.details)
-        self.balance = driver.find_element(By.XPATH, Locator.balance)
+        self.btnDetails = driver.find_element(By.CSS_SELECTOR, Locator.details)
+        self.balance = driver.find_element(By.CSS_SELECTOR, Locator.balance)
 
 class PopupItemPayment(object):
 
     def __init__(self, driver):
         self.driver = driver
 
-        self.titleDetails = driver.find_element(By.XPATH, Locator.titlePopup)
+        self.titleDetails = driver.find_element(By.CSS_SELECTOR, Locator.titlePopup)
         self.btnPay = driver.find_element(By.ID, Locator.pay)
 
 class SelectPaymentSum(object):
@@ -33,20 +33,20 @@ class PopupEasyPay(object):
     def __init__(self, driver):
         self.driver = driver
 
-        self.mailInput = driver.find_element(By.XPATH, Locator.mailInput)
-        self.cardNumberInput = driver.find_element(By.XPATH, Locator.cardNumberInput)
-        self.dateCardInput = driver.find_element(By.XPATH, Locator.dateCardInput)
-        self.cvNumberInput = driver.find_element(By.XPATH, Locator.cvNumberInput)
-        self.btnRememberMe = driver.find_element(By.XPATH, Locator.btnRememberMe)
-        self.btnPay = driver.find_element(By.CLASS_NAME, Locator.btnPay)
+        self.mailInput = driver.find_element(By.CSS_SELECTOR, Locator.mailInput)
+        self.cardNumberInput = driver.find_element(By.CSS_SELECTOR, Locator.cardNumberInput)
+        self.dateCardInput = driver.find_element(By.CSS_SELECTOR, Locator.dateCardInput)
+        self.cvNumberInput = driver.find_element(By.CSS_SELECTOR, Locator.cvNumberInput)
+        self.btnRememberMe = driver.find_element(By.CSS_SELECTOR, Locator.btnRememberMe)
+        self.btnPopupPay = driver.find_element(By.CLASS_NAME, Locator.btnPopupPay)
 
 class AdditionalFields(object):
 
     def __init__(self, driver):
         self.driver = driver
 
-        self.zipCodeInput = driver.find_element(By.XPATH, Locator.zipCodeInput)
-        self.phoneInput = driver.find_element(By.XPATH, Locator.phoneInput)
+        self.zipCodeInput = driver.find_element(By.CSS_SELECTOR, Locator.zipCodeInput)
+        self.phoneInput = driver.find_element(By.CSS_SELECTOR, Locator.phoneInput)
 
 class AdditionalClose(object):
 
@@ -54,5 +54,3 @@ class AdditionalClose(object):
         self.driver = driver
 
         self.btnBack = driver.find_element(By.CLASS_NAME, Locator.btnBack)
-
-

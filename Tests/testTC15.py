@@ -1,20 +1,19 @@
-import unittest
 from selenium import webdriver
-import time
+import time, allure, unittest
 from TestforUS1.Pages.welcomePage import Welcome
 from TestforUS1.Pages.signInPage import SignIn
 from TestforUS1.Pages.mainUserPage import MainUserPage
 from TestforUS1.Pages.paymentsPage import PaymentsPage,PopupItemPayment,\
     SelectPaymentSum,PopupEasyPay,AdditionalFields,AdditionalClose
 
-class TestTC2(unittest.TestCase):
+class TestTC15(unittest.TestCase):
 
     def setUp(self):
         # self.driver = webdriver.Chrome()
         self.driver = webdriver.Firefox()
         self.driver.get("http://localhost:8080/")
 
-    def test_getToSignIn(self):
+    def testCheckBalanceAfterPay(self):
         welcome = Welcome(self.driver)
         welcome.signIn.click()
 
@@ -30,13 +29,14 @@ class TestTC2(unittest.TestCase):
         self.driver.implicitly_wait(10)
         paymentPage = PaymentsPage(self.driver)
         paymentPage.btnDetails.click()
-        balanceValue1 = paymentPage.balance.text
+        balanceValue1 = float(paymentPage.balance.text)
         popupDetails = PopupItemPayment(self.driver)
+        time.sleep(1)
         popupDetails.btnPay.click()
 
         self.driver.implicitly_wait(10)
         selectPaymentSum = SelectPaymentSum(self.driver)
-        selectPaymentSum.inputPaymentSum.send_keys("200")
+        selectPaymentSum.inputPaymentSum.send_keys("10")
         selectPaymentSum.btnDownloadCheck.click()
         selectPaymentSum.btnProceed.click()
 
@@ -52,26 +52,25 @@ class TestTC2(unittest.TestCase):
         self.driver.implicitly_wait(10)
         fields = AdditionalFields(self.driver)
         fields.zipCodeInput.send_keys("58022")
-        fields.phoneInput.send_keys("991214424")
+        fields.phoneInput.send_keys("55555555")
 
-        popEasyPay.btnPay.click()
+        popEasyPay.btnPopupPay.click()
 
         self.driver.implicitly_wait(10)
         back = AdditionalClose(self.driver)
         back.btnBack.click()
-        self.driver.implicitly_wait(10)
-        popEasyPay.btnPay.click()
+        popEasyPay.btnPopupPay.click()
 
         self.driver.switch_to.default_content()
 
         time.sleep(10)
         self.driver.get("http://localhost:8080/user/paymentsPage")
-        self.driver.implicitly_wait(10)
+        time.sleep(1)
         paymentPage = PaymentsPage(self.driver)
-        balanceValue2 = paymentPage.balance.text
-        result = float(balanceValue2) - float(balanceValue1)
-        print(balanceValue2,balanceValue1,int(result))
-        self.assertEquals(result, 200.0);
+        balanceValue2 = float(paymentPage.balance.text)
+        result = balanceValue2 - balanceValue1
+        print(balanceValue2,balanceValue1,result)
+        self.assertEquals(result, 10.0);
 
     def tearDown(self):
         self.driver.close()
