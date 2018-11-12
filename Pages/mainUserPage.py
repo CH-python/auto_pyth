@@ -8,8 +8,4 @@ class MainUserPage(object):
 
         # Main user page locators defining
 
-        self.itemPayments = driver.find_element(By.XPATH, Locator.payments)
-
-
-
-
+        self.itemPayments = driver.find_element(By.CSS_SELECTOR, Locator.payments)
