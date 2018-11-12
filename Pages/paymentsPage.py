@@ -34,6 +34,7 @@ class PopupEasyPay(object):
     def __init__(self, driver):
         self.driver = driver
 
+        self.titlePopupEasyPay = driver.find_element(By.CSS_SELECTOR, Locator.titlePopupEasyPay)
         self.mailInput = driver.find_element(By.CSS_SELECTOR, Locator.mailInput)
         self.cardNumberInput = driver.find_element(By.CSS_SELECTOR, Locator.cardNumberInput)
         self.dateCardInput = driver.find_element(By.CSS_SELECTOR, Locator.dateCardInput)

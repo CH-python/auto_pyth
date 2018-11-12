@@ -1,9 +1,11 @@
 import unittest
 from selenium import webdriver
-from TestforUS1.Pages.welcomePage import Welcome
-from TestforUS1.Pages.signInPage import SignIn
-from TestforUS1.Pages.mainUserPage import MainUserPage
-from TestforUS1.Pages.paymentsPage import PaymentsPage,PopupItemPayment,SelectPaymentSum
+from TestforUS1.GetTo.getToSignIn import getToSignInPage
+from TestforUS1.GetTo.getToMainUserPage import getToMainUserPage
+from TestforUS1.GetTo.getToPaymentPage import getToPaymentPage
+from TestforUS1.GetTo.getToPopupDetails import getToPopupDetails
+from TestforUS1.GetTo.getToPopupSelectSum import getToPopupSelectSum
+from TestforUS1.Pages.paymentsPage import SelectPaymentSum
 
 class TestTC3(unittest.TestCase):
 
@@ -12,28 +14,19 @@ class TestTC3(unittest.TestCase):
         self.driver = webdriver.Firefox()
         self.driver.get("http://localhost:8080/")
 
-    def testGetToSelectPaymentSum(self):
-        welcome = Welcome(self.driver)
-        welcome.signIn.click()
+    def testButtonsDownloadAndSend(self):
 
-        signIn = SignIn(self.driver)
-        signIn.email.send_keys("user1@gmail.com")
-        signIn.password.send_keys("Qwerty12345")
-        signIn.submit.click()
-
+        getToSignInPage(self.driver)
+        getToMainUserPage(self.driver)
         self.driver.implicitly_wait(10)
-        userPage = MainUserPage(self.driver)
-        userPage.itemPayments.click()
+        getToPaymentPage(self.driver)
+        self.driver.implicitly_wait(10)
+        getToPopupDetails(self.driver)
+        self.driver.implicitly_wait(10)
+        getToPopupSelectSum(self.driver)
 
-        paymentPage = PaymentsPage(self.driver)
-        paymentPage.btnDetails.click()
-
-        popupDetails = PopupItemPayment(self.driver)
-        popupDetails.btnPay.click()
 
         selectPaymentSum = SelectPaymentSum(self.driver)
-
-
         selectPaymentSum.btnDownloadCheck.click()
         active = selectPaymentSum.btnDownloadCheck.get_attribute("class")
         self.assertEqual(active, 'btn btn-default active')
