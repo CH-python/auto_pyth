@@ -26,6 +26,7 @@ class SelectPaymentSum(object):
 
         self.inputPaymentSum = driver.find_element(By.ID, Locator.paymentSum)
         self.btnDownloadCheck = driver.find_element(By.ID, Locator.downloadCheck)
+        self.btnSendCheck = driver.find_element(By.ID, Locator.sendCheck)
         self.btnProceed = driver.find_element(By.ID, Locator.proceed)
 
 class PopupEasyPay(object):
@@ -33,6 +34,7 @@ class PopupEasyPay(object):
     def __init__(self, driver):
         self.driver = driver
 
+        self.titlePopupEasyPay = driver.find_element(By.XPATH, Locator.titlePopupEasyPay)
         self.mailInput = driver.find_element(By.XPATH, Locator.mailInput)
         self.cardNumberInput = driver.find_element(By.XPATH, Locator.cardNumberInput)
         self.dateCardInput = driver.find_element(By.XPATH, Locator.dateCardInput)

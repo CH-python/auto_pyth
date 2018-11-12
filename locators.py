@@ -21,10 +21,12 @@ class Locator(object):
     #popup_payments: Select payment Sum
     paymentSum = "payment-sum-input"
     downloadCheck = "download-check-label"
+    sendCheck = "send-check-label"
     proceed = "payment-proceed"
 
 
     #popup payments: EasyPay
+    titlePopupEasyPay = "/html/body/div[2]/section/span[2]/div/div/main/div/header/h1"
     wayToFields = "/html/body/div/section/span/div/div/main/form/div/div/div/div/div/div/div"
     mailInput = wayToFields + "/div/div/div/fieldset/span/div/div/input"
     cardNumberInput = wayToFields + "/fieldset/div/div/span/span/div/div/input"
