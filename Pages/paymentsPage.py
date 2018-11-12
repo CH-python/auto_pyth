@@ -9,6 +9,7 @@ class PaymentsPage(object):
         # Sign In page locators defining
 
         self.btnDetails = driver.find_element(By.XPATH, Locator.details)
+        self.balance = driver.find_element(By.XPATH, Locator.balance)
 
 class PopupItemPayment(object):
 
@@ -54,6 +55,6 @@ class AdditionalClose(object):
     def __init__(self, driver):
         self.driver = driver
 
-        self.btnClose = driver.find_element(By.CLASS_NAME, Locator.btnClose)
+        self.btnBack = driver.find_element(By.CLASS_NAME, Locator.btnBack)
 
 
