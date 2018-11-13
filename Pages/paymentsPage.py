@@ -6,52 +6,74 @@ class PaymentsPage(object):
     def __init__(self, driver):
         self.driver = driver
 
-        # Sign In page locators defining
+    def getPaymentDetails(self):
+        self.driver.implicitly_wait(10)
+        self.driver.find_element(By.CSS_SELECTOR, Locator.details).click()
 
-        self.btnDetails = driver.find_element(By.CSS_SELECTOR, Locator.details)
-        self.balance = driver.find_element(By.CSS_SELECTOR, Locator.balance)
+    def getBalanceValue(self):
+        self.driver.find_element(By.CSS_SELECTOR, Locator.balance)
 
-class PopupItemPayment(object):
-
-    def __init__(self, driver):
-        self.driver = driver
-
-        self.titleDetails = driver.find_element(By.CSS_SELECTOR, Locator.titlePopup)
-        self.btnPay = driver.find_element(By.ID, Locator.pay)
-
-class SelectPaymentSum(object):
+class PopupUtilityDetails(object):
 
     def __init__(self, driver):
         self.driver = driver
 
-        self.inputPaymentSum = driver.find_element(By.ID, Locator.paymentSum)
-        self.btnDownloadCheck = driver.find_element(By.ID, Locator.downloadCheck)
-        self.btnSendCheck = driver.find_element(By.ID, Locator.sendCheck)
-        self.btnProceed = driver.find_element(By.ID, Locator.proceed)
+    def getTitleDetails(self):
+        return self.driver.find_element(By.CSS_SELECTOR, Locator.titlePopup).text
+
+    def clickButtonPay(self):
+        self.driver.find_element(By.ID, Locator.pay).click()
+
+class PopupSelectPaymentSum(object):
+
+    def __init__(self, driver):
+        self.driver = driver
+
+    def enterInputSum(self, sum):
+        self.driver.find_element(By.ID, Locator.paymentSum).send_keys(sum)
+
+    def getAtributeDownload(self):
+        return self.driver.find_element(By.ID, Locator.downloadCheck).get_attribute("class")
+
+    def getAttributeSend(self):
+        return self.driver.find_element(By.ID, Locator.sendCheck).get_attribute("class")
+
+    def clickBtnDownload(self):
+        self.driver.find_element(By.ID, Locator.downloadCheck).click()
+
+    def clickBtnSendCheck(self):
+        self.driver.find_element(By.ID, Locator.sendCheck).click()
+
+    def clickBtnProceed(self):
+        self.driver.find_element(By.ID, Locator.proceed).click()
 
 class PopupEasyPay(object):
 
     def __init__(self, driver):
         self.driver = driver
 
-        self.mailInput = driver.find_element(By.CSS_SELECTOR, Locator.mailInput)
-        self.cardNumberInput = driver.find_element(By.CSS_SELECTOR, Locator.cardNumberInput)
-        self.dateCardInput = driver.find_element(By.CSS_SELECTOR, Locator.dateCardInput)
-        self.cvNumberInput = driver.find_element(By.CSS_SELECTOR, Locator.cvNumberInput)
-        self.btnRememberMe = driver.find_element(By.CSS_SELECTOR, Locator.btnRememberMe)
-        self.btnPopupPay = driver.find_element(By.CLASS_NAME, Locator.btnPopupPay)
+    def getToIframe(self):
+        self.driver.switch_to.frame(self.driver.find_element_by_tag_name("iframe"))
 
-class AdditionalFields(object):
+    def getTitleEasypay(self):
+        return self.driver.find_element(By.CSS_SELECTOR, Locator.titlePopupEasyPay).text
 
-    def __init__(self, driver):
-        self.driver = driver
+    def fillPopupEasyPayFields(self, mail, cardNumberm, dateCard, cvNumber):
 
-        self.zipCodeInput = driver.find_element(By.CSS_SELECTOR, Locator.zipCodeInput)
-        self.phoneInput = driver.find_element(By.CSS_SELECTOR, Locator.phoneInput)
+        self.driver.find_element(By.CSS_SELECTOR, Locator.mailInput).send_keys(mail)
+        self.driver.find_element(By.CSS_SELECTOR, Locator.cardNumberInput).send_keys(cardNumberm)
+        self.driver.find_element(By.CSS_SELECTOR, Locator.dateCardInput).send_keys(dateCard)
+        self.driver.find_element(By.CSS_SELECTOR, Locator.cvNumberInput).send_keys(cvNumber)
+        self.driver.find_element(By.CSS_SELECTOR, Locator.btnRememberMe).click()
+        self.driver.find_element(By.CLASS_NAME, Locator.btnPopupPay).click()
+        self.driver.find_element(By.CSS_SELECTOR, Locator.titlePopupEasyPay).text
 
-class AdditionalClose(object):
 
-    def __init__(self, driver):
-        self.driver = driver
+    def fillAdditionalFieldsPopupEasy(self,zipCode,phone):
 
-        self.btnBack = driver.find_element(By.CLASS_NAME, Locator.btnBack)
+        self.driver.find_element(By.CSS_SELECTOR, Locator.zipCodeInput).send_keys(zipCode)
+        self.driver.find_element(By.CSS_SELECTOR, Locator.phoneInput).send_keys(phone)
+
+    def clickBackPopupEasy(self):
+
+        self.driver.find_element(By.CLASS_NAME, Locator.btnBack).click()

@@ -6,6 +6,6 @@ class MainUserPage(object):
     def __init__(self, driver):
         self.driver = driver
 
-        # Main user page locators defining
-
-        self.itemPayments = driver.find_element(By.CSS_SELECTOR, Locator.payments)
+    def getToPaymentPage(self):
+        self.driver.implicitly_wait(10)
+        self.driver.find_element(By.CSS_SELECTOR, Locator.payments).click()
