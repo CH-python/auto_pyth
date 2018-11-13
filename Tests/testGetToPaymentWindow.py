@@ -1,12 +1,9 @@
 import unittest
 from selenium import webdriver
-from TestforUS1.GetTo.getToSignIn import getToSignInPage
-from TestforUS1.GetTo.getToMainUserPage import getToMainUserPage
-from TestforUS1.GetTo.getToPaymentPage import getToPaymentPage
-from TestforUS1.GetTo.getToPopupDetails import getToPopupDetails
-from TestforUS1.GetTo.getToPopupSelectSum import getToPopupSelectSum
-from TestforUS1.GetTo.getToPopupPayment import getToPopupPayment
-from TestforUS1.Pages.paymentsPage import PopupEasyPay
+from TestforUS1.Pages.welcomePage import Welcome
+from TestforUS1.Pages.loginPage import Login
+from TestforUS1.Pages.mainUserPage import MainUserPage
+from TestforUS1.Pages.paymentsPage import PaymentsPage, PopupUtilityDetails, PopupSelectPaymentSum, PopupEasyPay
 
 class TestTC4(unittest.TestCase):
 
@@ -16,28 +13,29 @@ class TestTC4(unittest.TestCase):
         self.driver.get("http://localhost:8080/")
 
     def testGetToPaymentWindow(self):
+        welcomePage = Welcome(self.driver)
+        loginPage = Login(self.driver)
+        mainUserPage = MainUserPage(self.driver)
+        paymentPage = PaymentsPage(self.driver)
+        utilityDetailsPopup = PopupUtilityDetails(self.driver)
+        selectSumPopup = PopupSelectPaymentSum(self.driver)
+        easyPayPopup = PopupEasyPay(self.driver)
 
-        getToSignInPage(self.driver)
-        getToMainUserPage(self.driver)
-        self.driver.implicitly_wait(10)
-        getToPaymentPage(self.driver)
-        self.driver.implicitly_wait(10)
-        getToPopupDetails(self.driver)
-        self.driver.implicitly_wait(10)
-        getToPopupSelectSum(self.driver)
-        self.driver.implicitly_wait(10)
-        getToPopupPayment(self.driver)
+        welcomePage.signIn()
+        loginPage.login('user1@gmail.com', 'Qwerty12345')
+        mainUserPage.getToPaymentPage()
+        paymentPage.getPaymentDetails()
+        utilityDetailsPopup.clickButtonPay()
+        selectSumPopup.enterInputSum("3")
+        selectSumPopup.clickBtnDownload()
+        selectSumPopup.clickBtnProceed()
+        easyPayPopup.getToIframe()
 
+        title = easyPayPopup.getTitleEasypay()
+        print(title)
+        self.assertEqual(title, 'EasyPay')
 
-        self.driver.switch_to.frame(self.driver.find_element_by_tag_name("iframe"))
-        self.driver.implicitly_wait(10)
-        popupEasyPay = PopupEasyPay(self.driver)
-        actual = popupEasyPay.titlePopupEasyPay.text
-        self.assertEqual(actual, 'EasyPay')
-
-
-
-    def TearDown(self):
+    def tearDown(self):
         self.driver.close()
 
 if __name__ == "__main__":

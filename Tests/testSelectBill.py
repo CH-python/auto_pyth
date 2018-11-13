@@ -1,11 +1,10 @@
 import unittest
 from selenium import webdriver
-from TestforUS1.GetTo.getToSignIn import getToSignInPage
-from TestforUS1.GetTo.getToMainUserPage import getToMainUserPage
-from TestforUS1.GetTo.getToPaymentPage import getToPaymentPage
-from TestforUS1.GetTo.getToPopupDetails import getToPopupDetails
-from TestforUS1.Pages.paymentsPage import PopupItemPayment
-from TestforUS1.screenShot import SS
+from TestforUS1.Pages.welcomePage import Welcome
+from TestforUS1.Pages.loginPage import Login
+from TestforUS1.Pages.mainUserPage import MainUserPage
+from TestforUS1.Pages.paymentsPage import PaymentsPage, PopupUtilityDetails
+
 
 
 class TestTC1(unittest.TestCase):
@@ -18,18 +17,21 @@ class TestTC1(unittest.TestCase):
 
     def testSelectBill(self):
 
-        getToSignInPage(self.driver)
-        getToMainUserPage(self.driver)
-        self.driver.implicitly_wait(10)
-        getToPaymentPage(self.driver)
-        self.driver.implicitly_wait(10)
-        getToPopupDetails(self.driver)
+        welcomePage = Welcome(self.driver)
+        loginPage = Login(self.driver)
+        mainUserPage = MainUserPage(self.driver)
+        paymentPage = PaymentsPage(self.driver)
+        utilityDetailsPopup = PopupUtilityDetails(self.driver)
 
-        popupDetails = PopupItemPayment(self.driver)
-        actual = popupDetails.titleDetails.text
-        self.assertEquals(actual, "Utility details");
+        welcomePage.signIn()
+        loginPage.login('user1@gmail.com', 'Qwerty12345')
+        mainUserPage.getToPaymentPage()
+        paymentPage.getPaymentDetails()
+        actual = utilityDetailsPopup.getTitleDetails()
+        print(actual)
+        self.assertEquals(actual, "Utility details")
 
-    def TearDown(self):
+    def tearDown(self):
         self.driver.close()
 
 if __name__ == "__main__":
