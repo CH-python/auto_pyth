@@ -1,5 +1,6 @@
 from TestforUS1.locators import Locator
-from selenium.webdriver.common.by import By
+from TestforUS1.Methods import Methods
+
 
 class Login(object):
 
@@ -7,9 +8,13 @@ class Login(object):
         self.driver = driver
 
     def login(self, email, password):
-        self.driver.find_element(By.ID, Locator.userEmail).send_keys(email)
-        self.driver.find_element(By.ID, Locator.userPassword).send_keys(password)
-        self.driver.find_element(By.ID, Locator.loginButton).click()
+        methods = Methods(self.driver)
+        methods.sendKeys(email,Locator.userEmail, 'id')
+        methods.sendKeys(password, Locator.userPassword, 'id')
+        methods.clickElement(Locator.loginButton, 'id')
+
+
+
 
 
 

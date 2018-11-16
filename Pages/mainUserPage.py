@@ -1,5 +1,6 @@
 from TestforUS1.locators import Locator
-from selenium.webdriver.common.by import By
+from TestforUS1.Methods import Methods
+
 
 class MainUserPage(object):
 
@@ -7,5 +8,7 @@ class MainUserPage(object):
         self.driver = driver
 
     def getToPaymentPage(self):
+        methods = Methods(self.driver)
         self.driver.implicitly_wait(10)
-        self.driver.find_element(By.CSS_SELECTOR, Locator.payments).click()
+        methods.clickElement(Locator.payments, 'css')
+

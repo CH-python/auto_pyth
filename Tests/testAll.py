@@ -31,7 +31,6 @@ class Test(unittest.TestCase):
         utilityDetailsPopup = PopupUtilityDetails(self.driver)
 
         actual = utilityDetailsPopup.getTitleDetails()
-        print(actual)
         self.assertEquals(actual, "Utility details")
 
     def testButtonsDownloadAndSend(self):

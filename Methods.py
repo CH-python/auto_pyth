@@ -1,10 +1,12 @@
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException, ElementNotVisibleException
+from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException
 import logging
-logging.basicConfig(level=logging.INFO, filename='sample.log')
-logger = logging.getLogger()
 
 class Methods(object):
+
+    logging.basicConfig(level=logging.INFO, filename='sample.log', filemode='w')
+    logger = logging.getLogger()
+
 
     def __init__(self, driver):
         self.driver = driver
@@ -21,38 +23,56 @@ class Methods(object):
         }
         if locatorType in locatorTypes:
             return locatorTypes[locatorType]
-        self.logging.info("Locator type: %s not supported!" % locatorType)
+        self.logger.info("Locator type: %s not supported!" % locatorType)
         raise NoSuchElementException
 
     def getElement(self, locator, locatorType='css'):
         try:
             element = self.driver.find_element(self.getLocatorType(locatorType), locator)
-            self.logging.info("Element with locator: %s By type: %s  Found!" % (locator, locatorType))
+            self.logger.info("Element with locator: %s By type: %s  Found!" % (locator, locatorType))
             return element
         except NoSuchElementException:
-            self.logging.error("Element with locator: %s By type:%s  Not Found!" % (locator, locatorType))
+            self.logger.error("Element with locator: %s By type:%s  Not Found!" % (locator, locatorType))
             raise NoSuchElementException
 
     def clickElement(self, locator, locatorType='css'):
         try:
             element = self.getElement(locator, locatorType)
             element.click()
-            self.logging.info("Click on element with locator: %s and locator type: %s" % (locator, locatorType))
+            self.logger.info("Click on element with locator: %s and locator type: %s" % (locator, locatorType))
         except ElementNotInteractableException:
-            self.logging.error("Can not click on element with locator: %s and locator/"
+            self.logger.error("Can not click on element with locator: %s and locator"
                                  " type: %s" % (locator, locatorType))
             raise ElementNotInteractableException
-        return self
+
 
     def sendKeys(self, data, locator, locatorType="css"):
         try:
             element = self.getElement(locator, locatorType)
             element.send_keys(data)
-            self.logging.info(" Data %s successfully send to element with locator:/"
+            self.logger.info(" Data %s successfully send to element with locator:"
                               " %s and locator type: %s" % (data, locator, locatorType))
         except ElementNotInteractableException:
-            self.logging.error(" Failed to send: %s to the element with/"
+            self.logger.error(" Failed to send: %s to the element with"
                                  " locator:%s and locator type: %s" % (data, locator, locatorType))
             raise ElementNotInteractableException
-        return self
+
+
+    def getText(self, locator, locatorType="css"):
+        try:
+            self.element = self.getElement(locator, locatorType).text
+            self.logger.info("Text '%s' in element with locator: %s By type: %s  Found!" % (self.element, locator, locatorType))
+        except NoSuchElementException:
+            self.logger.error("Text '%s' in element with locator: %s By type:%s  Not Found!" % (locator, locatorType))
+            raise NoSuchElementException
+        return self.element
+
+    def getAttribute(self, attr, locator, locatorType="css"):
+        try:
+            self.element = self.getElement(locator, locatorType).get_attribute(attr)
+            self.logger.info("Attribute '%s' for element with locator: %s By type: %s  Found!" % (attr, locator, locatorType))
+        except NoSuchElementException:
+            self.logger.error("Attribute '%s' for element with locator: %s By type:%s  Not Found!" % (attr, locator, locatorType))
+            raise NoSuchElementException
+        return self.element
 

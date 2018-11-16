@@ -10,9 +10,11 @@ class TestTC4(unittest.TestCase):
     def setUp(self):
         # self.driver = webdriver.Chrome()
         self.driver = webdriver.Firefox()
-        self.driver.get("http://localhost:8080/")
+        # self.driver.get("http://localhost:8080/")
 
     def testGetToPaymentWindow(self):
+
+        self.driver.get("http://localhost:8080/")
         welcomePage = Welcome(self.driver)
         loginPage = Login(self.driver)
         mainUserPage = MainUserPage(self.driver)
@@ -38,5 +40,5 @@ class TestTC4(unittest.TestCase):
     def tearDown(self):
         self.driver.close()
 
-if __name__ == "__main__":
-    unittest.main()
+# if __name__ == "__main__":
+#     unittest.main()

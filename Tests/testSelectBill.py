@@ -10,7 +10,6 @@ from TestforUS1.Pages.paymentsPage import PaymentsPage, PopupUtilityDetails
 class TestTC1(unittest.TestCase):
 
     def setUp(self):
-
         # self.driver = webdriver.Chrome()
         self.driver = webdriver.Firefox()
         self.driver.get("http://localhost:8080/")
@@ -34,5 +33,5 @@ class TestTC1(unittest.TestCase):
     def tearDown(self):
         self.driver.close()
 
-if __name__ == "__main__":
-    unittest.main()
+# if __name__ == "__main__":
+#     unittest.main()
