@@ -5,7 +5,7 @@ class Locator(object):
     signUp = "Sign_up"
 
     #sign in page locators as user
-    userEmail = "email"
+    userEmail = "email2"
     userPassword = "password"
     loginButton = "Login_button"
 
@@ -23,7 +23,6 @@ class Locator(object):
     downloadCheck = "download-check-label"
     sendCheck = "send-check-label"
     proceed = "payment-proceed"
-
 
     #popup payments: EasyPay
     titlePopupEasyPay = "#container > section > span:nth-child(3) > div > div > main > div > header > h1"

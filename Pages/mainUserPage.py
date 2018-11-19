@@ -1,7 +1,6 @@
 from TestforUS1.locators import Locator
 from TestforUS1.methods import Methods
 
-
 class MainUserPage(object):
 
     def __init__(self, driver):
@@ -10,4 +9,5 @@ class MainUserPage(object):
 
     def getToPaymentPage(self):
         self.methods.waitForElement(Locator.payments, 'css').clickElement(Locator.payments, 'css')
+
 

@@ -13,8 +13,7 @@ class Methods(object):
 
     def __init__(self, driver):
         self.driver = driver
-        self.makeSS = SS(self.driver)
-
+   
     def getLocatorType(self, locatorType):
         locatorType = locatorType.lower()
         locatorTypes = {
@@ -28,7 +27,6 @@ class Methods(object):
         if locatorType in locatorTypes:
             return locatorTypes[locatorType]
         self.logger.info("Locator type: %s not supported!" % locatorType)
-        # self.makeSS.ScreenShot()
         raise NoSuchElementException
 
     def getElement(self, locator, locatorType='css'):
@@ -37,45 +35,40 @@ class Methods(object):
             self.logger.info("Element with locator: %s By type: %s  Found!" % (locator, locatorType))
             return element
         except NoSuchElementException:
-            self.logger.error("Element with locator: %s By type:%s  Not Found!" % (locator, locatorType))
-            # self.makeSS.ScreenShot()
+            self.driver.save_screenshot("NotFound%sBy%s.png" % (locator, locatorType))
+            self.logger.error("Element with locator: %s By type: %s  Not Found!" % (locator, locatorType))
             raise NoSuchElementException
 
     def clickElement(self, locator, locatorType='css'):
         try:
             element = self.getElement(locator, locatorType)
             element.click()
-            self.logger.findCaller(stack_info=False)
             self.logger.info("Click on element with locator: %s and locator type: %s" % (locator, locatorType))
         except ElementNotInteractableException:
+            self.driver.save_screenshot("NotСlick%sBy%s.png" % (locator, locatorType))
             self.logger.error("Can not click on element with locator: %s and locator"
                                  " type: %s" % (locator, locatorType))
-            # self.makeSS.ScreenShot()
             raise ElementNotInteractableException
-
 
     def sendKeys(self, data, locator, locatorType="css"):
         try:
             element = self.getElement(locator, locatorType)
             element.send_keys(data)
-            self.logger.info(" Data %s successfully send to element with locator:"
-                              " %s and locator type: %s" % (data, locator, locatorType))
+            self.logger.info("Data %s successfully send to element with locator: "
+                             "%s and locator type: %s" % (data, locator, locatorType))
         except ElementNotInteractableException:
-            self.logger.error(" Failed to send: %s to the element with"
-                                 " locator:%s and locator type: %s" % (data, locator, locatorType))
-            # self.makeSS.ScreenShot()
+            self.driver.save_screenshot("FailSend%sBy%s.png" % (locator, locatorType))
+            self.logger.error("Failed to send: %s to the element with "
+                                 "locator:%s and locator type: %s" % (data, locator, locatorType))
             raise ElementNotInteractableException
-
 
     def getText(self, locator, locatorType="css"):
         try:
             self.element = self.getElement(locator, locatorType).text
-            self.logger.info("Text '%s' in element with locator:"
-                              "%s By type: %s  Found!" % (self.element, locator, locatorType))
+            self.logger.info("Text '%s' in element with locator: %s By type: %s  Found!" % (self.element, locator, locatorType))
         except NoSuchElementException:
-            self.logger.error("Text '%s' in element with locator:"
-                                    " %s By type:%s  Not Found!" % (locator, locatorType))
-            # self.makeSS.ScreenShot()
+            self.driver.save_screenshot("NotFound%sBy%s.png" % (locator, locatorType))
+            self.logger.error("Text '%s' in element with locator: %s By type:%s  Not Found!" % (locator, locatorType))
             raise NoSuchElementException
         return self.element
 
@@ -85,9 +78,9 @@ class Methods(object):
             self.logger.info("Attribute '%s' for element with locator:"
                              " %s By type: %s  Found!" % (attr, locator, locatorType))
         except NoSuchElementException:
+            self.driver.save_screenshot("NotFoundAttribute%sBy%s.png" % (locator, locatorType))
             self.logger.error("Attribute '%s' for element with locator:"
                                     " %s By type:%s  Not Found!" % (attr, locator, locatorType))
-            # self.makeSS.ScreenShot()
             raise NoSuchElementException
         return self.element
 
@@ -107,4 +100,3 @@ class Methods(object):
                            " visible on the page" % locator)
             raise ElementNotVisibleException
         return self
-

@@ -1,7 +1,6 @@
 from TestforUS1.locators import Locator
 from TestforUS1.methods import Methods
 
-
 class Login(object):
 
     def __init__(self, driver):
@@ -12,6 +11,7 @@ class Login(object):
         self.methods.sendKeys(email,Locator.userEmail, 'id')
         self.methods.sendKeys(password, Locator.userPassword, 'id')
         self.methods.clickElement(Locator.loginButton, 'id')
+
 
 
 
