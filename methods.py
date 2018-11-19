@@ -1,15 +1,19 @@
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException
+from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException, ElementNotVisibleException
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
 import logging
+from TestforUS1.screenShot import SS
 
 class Methods(object):
 
-    logging.basicConfig(level=logging.INFO, filename='sample.log', filemode='w')
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s', filename='sample.log', filemode='w')
     logger = logging.getLogger()
+
 
     def __init__(self, driver):
         self.driver = driver
-
+   
     def getLocatorType(self, locatorType):
         locatorType = locatorType.lower()
         locatorTypes = {
@@ -71,9 +75,28 @@ class Methods(object):
     def getAttribute(self, attr, locator, locatorType="css"):
         try:
             self.element = self.getElement(locator, locatorType).get_attribute(attr)
-            self.logger.info("Attribute '%s' for element with locator: %s By type: %s  Found!" % (attr, locator, locatorType))
+            self.logger.info("Attribute '%s' for element with locator:"
+                             " %s By type: %s  Found!" % (attr, locator, locatorType))
         except NoSuchElementException:
             self.driver.save_screenshot("NotFoundAttribute%sBy%s.png" % (locator, locatorType))
-            self.logger.error("Attribute '%s' for element with locator: %s By type:%s  Not Found!" % (attr, locator, locatorType))
+            self.logger.error("Attribute '%s' for element with locator:"
+                                    " %s By type:%s  Not Found!" % (attr, locator, locatorType))
             raise NoSuchElementException
         return self.element
+
+    def waitForElement(self, locator, locatorType='css', timeout=20):
+        try:
+            self.logger.info("Waiting for maximum: %d for element"
+                          " to be visible on the page" % timeout)
+            WebDriverWait(self.driver, timeout) \
+                .until(expected_conditions.visibility_of_element_located((self.getLocatorType(locatorType), locator)))
+            self.logger.info("Element with locator: %s appeared on the page" % locator)
+        except NoSuchElementException:
+            self.logger.error("Element with locator %s and locator type: "
+                           "%s NOT FOUND!" % (locator, locatorType))
+            raise NoSuchElementException
+        except ElementNotVisibleException:
+            self.logger.error("Element with locator: %s is not"
+                           " visible on the page" % locator)
+            raise ElementNotVisibleException
+        return self

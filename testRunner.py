@@ -19,6 +19,7 @@ class TestStringMethods(unittest.TestCase):
     basicSuite.addTest(unittest.makeSuite(TestforUS1.Tests.testSelectBill.TestTC1))
     # basicSuite.addTest(unittest.makeSuite(TestforUS1.Tests.testButtonsDownloadAndSend.TestTC3))
     # basicSuite.addTest(unittest.makeSuite(TestforUS1.Tests.testGetToPaymentWindow.TestTC4))
+    # print(basicSuite)
     # basicSuite.addTest(unittest.makeSuite(TestforUS1.Tests.testCheckBalanceAfterPay.TestTC15))
     # basicSuite.addTest(unittest.makeSuite(TestforUS1.Tests.testCheckNoSaveCardDataAfterRefresh.TestTC11))
     # basicSuite.addTest(unittest.makeSuite(TestforUS1.Tests.testCheckNoSaveCvcAfterRefresh.TestTC10))
