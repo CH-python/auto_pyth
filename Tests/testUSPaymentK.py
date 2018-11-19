@@ -1,13 +1,11 @@
 import unittest
 import logging
-from TestforUS1.screenShot import SS
 from TestforUS1.webdriverFactory import WebdriverFactory
 from TestforUS1.dataTests import DataTest
 from TestforUS1.Pages.welcomePage import Welcome
 from TestforUS1.Pages.loginPage import Login
 from TestforUS1.Pages.mainUserPage import MainUserPage
 from TestforUS1.Pages.paymentsPage import PaymentsPage, PopupUtilityDetails, PopupSelectPaymentSum, PopupEasyPay
-
 
 class Test(unittest.TestCase):
 
@@ -16,7 +14,6 @@ class Test(unittest.TestCase):
         self.driver.get(DataTest.url['home'])
         self.logger = logging.getLogger()
 
-        self.ss = SS(self.driver)
         self.welcomePage = Welcome(self.driver)
         self.loginPage = Login(self.driver)
         self.mainUserPage = MainUserPage(self.driver)
@@ -51,12 +48,10 @@ class Test(unittest.TestCase):
         self.utilityDetailsPopup.clickButtonPay()
         self.selectSumPopup.clickBtnDownload()
         active = self.selectSumPopup.getAtributeDownload()
-        print(active)
         self.assertEqual(active, 'btn btn-default active')
 
         self.selectSumPopup.clickBtnSendCheck()
         active = self.selectSumPopup.getAttributeSend()
-        print(active)
         self.assertEqual(active, 'btn btn-default active')
 
     def testGetToPaymentWindow(self):
@@ -72,7 +67,6 @@ class Test(unittest.TestCase):
         self.easyPayPopup.getToIframe()
 
         title = self.easyPayPopup.getTitleEasypay()
-        print(title)
         self.assertEqual(title, 'EasyPay')
 
     def tearDown(self):
