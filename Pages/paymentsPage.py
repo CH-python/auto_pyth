@@ -5,71 +5,63 @@ class PaymentsPage(object):
 
     def __init__(self, driver):
         self.driver = driver
+        self.methods = Methods(self.driver)
 
     def getPaymentDetails(self):
-        self.driver.implicitly_wait(10)
-        methods = Methods(self.driver)
-        methods.clickElement(Locator.details, 'css')
+        self.methods.waitForElement(Locator.details, 'css').clickElement(Locator.details, 'css')
 
     def getBalanceValue(self):
-        methods = Methods(self.driver)
-        methods.clickElement(Locator.balance, 'css')
+        self.methods.clickElement(Locator.balance, 'css')
 
 class PopupUtilityDetails(object):
 
     def __init__(self, driver):
         self.driver = driver
+        self.methods = Methods(self.driver)
 
     def getTitleDetails(self):
-        methods = Methods(self.driver)
-        return methods.getText(Locator.titlePopupPayments, 'css')
+        return self.methods.getText(Locator.titlePopupPayments, 'css')
 
     def clickButtonPay(self):
-        methods = Methods(self.driver)
-        methods.clickElement(Locator.pay, 'id')
+        self.methods.clickElement(Locator.pay, 'id')
 
 
 class PopupSelectPaymentSum(object):
 
     def __init__(self, driver):
         self.driver = driver
+        self.methods = Methods(self.driver)
 
     def enterInputSum(self, sum):
-        methods = Methods(self.driver)
-        methods.sendKeys(sum, Locator.paymentSum, 'id')
+        self.methods.sendKeys(sum, Locator.paymentSum, 'id')
 
     def getAtributeDownload(self):
-        methods = Methods(self.driver)
-        return methods.getAttribute('class', Locator.downloadCheck, 'id')
+        return self.methods.getAttribute('class', Locator.downloadCheck, 'id')
 
     def getAttributeSend(self):
-        methods = Methods(self.driver)
-        return methods.getAttribute('class', Locator.sendCheck, 'id')
+        return self.methods.getAttribute('class', Locator.sendCheck, 'id')
 
     def clickBtnDownload(self):
-        methods = Methods(self.driver)
-        methods.clickElement(Locator.downloadCheck, 'id')
+        self.methods.clickElement(Locator.downloadCheck, 'id')
 
     def clickBtnSendCheck(self):
-        methods = Methods(self.driver)
-        methods.clickElement(Locator.sendCheck, 'id')
+        self.methods.clickElement(Locator.sendCheck, 'id')
 
     def clickBtnProceed(self):
-        methods = Methods(self.driver)
-        methods.clickElement(Locator.proceed, 'id')
+        self.methods.clickElement(Locator.proceed, 'id')
 
 
 class PopupEasyPay(object):
 
     def __init__(self, driver):
         self.driver = driver
+        self.methods = Methods(self.driver)
 
     def getToIframe(self):
         self.driver.switch_to.frame(self.driver.find_element_by_tag_name("iframe"))
 
     def getTitleEasypay(self):
-        methods = Methods(self.driver)
-        return methods.getText(Locator.titlePopupEasyPay, 'css')
+        return self.methods.getText(Locator.titlePopupEasyPay, 'css')
 
     def fillPopupEasyPayFields(self, mail, cardNumberm, dateCard, cvNumber):
 
