@@ -8,7 +8,7 @@ class Login(object):
         self.methods = Methods(self.driver)
 
     def login(self, email, password):
-        self.methods.sendKeys(email,Locator.userEmail, 'id')
+        self.methods.sendKeys(email, Locator.userEmail, 'id')
         self.methods.sendKeys(password, Locator.userPassword, 'id')
         self.methods.clickElement(Locator.loginButton, 'id')
 
