@@ -1,5 +1,5 @@
 from TestforUS1.locators import Locator
-from TestforUS1.Methods import Methods
+from TestforUS1.methods import Methods
 
 
 class Login(object):
