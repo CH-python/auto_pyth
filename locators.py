@@ -5,7 +5,7 @@ class Locator(object):
     signUp = "Sign_up"
 
     #sign in page locators as user
-    userEmail = "email2"
+    userEmail = "email"
     userPassword = "password"
     loginButton = "Login_button"
 
