@@ -1,5 +1,6 @@
 import unittest
 import logging
+from TestforUS1.screenShot import SS
 from TestforUS1.webdriverFactory import WebdriverFactory
 from TestforUS1.dataTests import DataTest
 from TestforUS1.Pages.welcomePage import Welcome
@@ -15,7 +16,7 @@ class Test(unittest.TestCase):
         self.driver.get(DataTest.url['home'])
         self.logger = logging.getLogger()
 
-
+        self.ss = SS(self.driver)
         self.welcomePage = Welcome(self.driver)
         self.loginPage = Login(self.driver)
         self.mainUserPage = MainUserPage(self.driver)
@@ -32,15 +33,18 @@ class Test(unittest.TestCase):
         self.paymentPage.getPaymentDetails()
 
     def testSelectBill(self):
-        self.logger.info("Test select bill")
+        name = unittest.TestCase.id(self)
+        self.logger.info("_"*10 +name)
 
         self.getToPaymentDetailsPopup()
 
         actual = self.utilityDetailsPopup.getTitleDetails()
         self.assertEquals(actual, "Utility details")
 
+
     def testButtonsDownloadAndSend(self):
-        self.logger.info("Test button download and send")
+        name = unittest.TestCase.id(self)
+        self.logger.info("_"*10 + name)
 
         self.getToPaymentDetailsPopup()
 
@@ -56,7 +60,8 @@ class Test(unittest.TestCase):
         self.assertEqual(active, 'btn btn-default active')
 
     def testGetToPaymentWindow(self):
-        self.logger.info("Test get to Payment window")
+        name = unittest.TestCase.id(self)
+        self.logger.info("_"*10 +name)
 
         self.getToPaymentDetailsPopup()
 
