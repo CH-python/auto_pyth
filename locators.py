@@ -1,37 +1,41 @@
 class Locator(object):
 
     #welcome page locators
-    sign_in = "Sign_in"
-    sign_up = "Sign_up"
+    signIn = "Sign_in"
+    signUp = "Sign_up"
 
     #sign in page locators as user
-    user_email = "email"
-    user_password = "password"
-    login_button = "Login_button"
+    userEmail = "email"
+    userPassword = "password"
+    loginButton = "Login_button"
 
     #main user page locators
-    payments = "//*[@id='sidebar-menu']/div/ul/li[3]/a"
+    payments = "#sidebar-menu>div>ul>li:nth-child(3)>a"
 
     #popup payments
     pay = "pay"
-    details = "//*[@id='historyTable']/tbody/tr[2]/td[3]/button"
-    titlePopup = "//*[@id='myModalLabel']/span"
+    details = "#historyTable > tbody > tr:nth-child(1) > td:nth-child(3) > button"
+    titlePopup = "#myModalLabel > span"
+    balance = "#historyTable > tbody > tr:nth-child(1) > td.balance"
+
+    #popup_payments: Select payment Sum
     paymentSum = "payment-sum-input"
     downloadCheck = "download-check-label"
+    sendCheck = "send-check-label"
     proceed = "payment-proceed"
 
-    #popup payments: EasyPay
-    wayToFields = "/html/body/div/section/span/div/div/main/form/div/div/div/div/div/div/div"
-    mailInput = wayToFields + "/div/div/div/fieldset/span/div/div/input"
-    cardNumberInput = wayToFields + "/fieldset/div/div/span/span/div/div/input"
-    dateCardInput = wayToFields + "/fieldset/div/div/div/div/input"
-    cvNumberInput = wayToFields + "/fieldset/div/div/div[2]/div/input"
-    zipCodeInput = wayToFields + "/fieldset/div/div/div/div/div/div/input"
-    btnRememberMe = wayToFields + "/div/fieldset/span"
-    PhoneInput = wayToFields + "/div/div/div/fieldset/fieldset/span/div/div/input"
-    btnPay = "Button-animationWrapper-child--primary"
-    btnClose = "Header-navBack"
 
-    #payments page locators
-    first_utility_details = "#historyTable > tbody > tr:nth-child(1) > td:nth-child(3) > button"
-    second_utility_details = "#historyTable > tbody > tr:nth-child(2) > td:nth-child(3) > button"
+    #popup payments: EasyPay
+    titlePopupEasyPay = "#container > section > span:nth-child(3) > div > div > main > div > header > h1"
+    mailInput = "div.StaggerGroup-child.is-head-0.is-tail-NaN > div > div > div > fieldset > span > div > div.Textbox-inputRow > input"
+    cardNumberInput = "div.StaggerGroup-child.is-head-1.is-tail-NaN > span > span:nth-child(1) > div > div.Textbox-inputRow > input"
+    dateCardInput = "div.Fieldset-childLeft.u-size1of2 > div.Textbox-inputRow > input"
+    cvNumberInput = "div.Fieldset-childRight.u-size1of2 > div.Textbox-inputRow > input"
+    zipCodeInput =  "div.StaggerGroup-child > div > div > div > div > div.Textbox-inputRow > input"
+    btnRememberMe = "span.Fieldset-child--subdued.Fieldset-child--checkboxActive"
+    phoneInput = "fieldset > fieldset > span > div > div.Textbox-inputRow > input"
+    phoneInputCSS = '#container > section > span:nth-child(3) > div > div > main > form > div > div > div > div > div \
+                     > div:nth-child(2) > div > div > div > div > fieldset > fieldset > span > div \
+                     > div.Textbox-inputRow'
+    btnPopupPay = "Button-animationWrapper-child--primary"
+    btnBack = "Header-navBack"
