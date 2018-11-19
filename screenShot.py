@@ -6,7 +6,7 @@ class SS(object):
         self.driver = driver
 
     def ScreenShot(self, path):
-        directory = 'C:/Users/Катя/Test_US1_payment/ScreenShots'
+        directory = 'E:\Django\Selenium\\venv\TestforUS1'
         self.driver.save_screenshot(directory + path)
 
 

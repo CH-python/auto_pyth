@@ -1,14 +1,22 @@
 from TestforUS1.locators import Locator
-from selenium.webdriver.common.by import By
+from TestforUS1.methods import Methods
+import logging
+
 
 class Welcome(object):
+
+
     def __init__(self, driver):
         self.driver = driver
 
     def signIn(self):
-        return self.driver.find_element(By.ID, Locator.signIn).click()
+        logger = logging.getLogger()
+        logger.info("New test")
+        methods = Methods(self.driver)
+        methods.clickElement(Locator.signIn, 'id')
 
     def signUp(self):
-        return self.driver.find_element(By.ID, Locator.signUp).click()
+        methods = Methods(self.driver)
+        methods.clickElement(Locator.signUp, 'id')
 
 
