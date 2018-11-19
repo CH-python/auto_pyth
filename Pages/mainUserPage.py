@@ -1,7 +1,6 @@
 from TestforUS1.locators import Locator
 from TestforUS1.methods import Methods
 
-
 class MainUserPage(object):
 
     def __init__(self, driver):
