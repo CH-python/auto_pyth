@@ -14,8 +14,6 @@ class TestTC15(unittest.TestCase):
 
     def testCheckBalanceAfterPay(self):
         driver = self.driver
-        # wait = WebDriverWait(driver, 10)
-
         welcomePage = Welcome(driver)
         loginPage = Login(driver)
         mainUserPage = MainUserPage(driver)

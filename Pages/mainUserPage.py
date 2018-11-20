@@ -10,4 +10,3 @@ class MainUserPage(object):
         methods = Methods(self.driver)
         self.driver.implicitly_wait(10)
         methods.clickElement(Locator.payments, 'css')
-
