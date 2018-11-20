@@ -63,28 +63,35 @@ class PopupEasyPay(object):
     def getTitleEasypay(self):
         return self.methods.getText(Locator.titlePopupEasyPay, 'css')
 
-    def fillPopupEasyPayFields(self, cardNumberm, dateCard, cvNumber):
-        self.driver.find_element(By.CSS_SELECTOR, Locator.cardNumberInput).send_keys(cardNumberm)
-        self.driver.find_element(By.CSS_SELECTOR, Locator.dateCardInput).send_keys(dateCard)
-        self.driver.find_element(By.CSS_SELECTOR, Locator.cvNumberInput).send_keys(cvNumber)
+    def fillPopupEasyPayFields(self, cardNumber, dateCard, cvNumber):
+        methods = Methods(self.driver)
+        methods.sendKeys(cardNumber, Locator.cardNumberInput, 'css')
+        methods.sendKeys(dateCard, Locator.dateCardInput, 'css')
+        methods.sendKeys(cvNumber, Locator.cvNumberInput, 'css')
 
     def clickRememberMe(self):
-        self.driver.find_element(By.CSS_SELECTOR, Locator.btnRememberMe).click()
+        methods = Methods(self.driver)
+        methods.clickElement(Locator.btnRememberMe, 'css')
 
     def getCvNumber(self):
-        return self.driver.find_element(By.CSS_SELECTOR, Locator.cvNumberInput).text
+        methods = Methods(self.driver)
+        return methods.getText(Locator.cvNumberInput, 'css')
 
     def getCardNumber(self):
-        return self.driver.find_element(By.CSS_SELECTOR, Locator.cardNumberInput).text
+        methods = Methods(self.driver)
+        return methods.getText(Locator.cardNumberInput, 'css')
 
     def getTitlePopupEasyPay(self):
-        return self.driver.find_element(By.CSS_SELECTOR, Locator.titlePopupEasyPay).text
+        methods = Methods(self.driver)
+        return methods.getText(Locator.titlePopupEasyPay, 'css')
 
     def fillAdditionalFieldsPopupEasy(self, zipCode, phone, mail):
-        self.driver.find_element(By.CSS_SELECTOR, Locator.zipCodeInput).send_keys(zipCode)
-        self.driver.find_element(By.CSS_SELECTOR, Locator.phoneInput).send_keys(phone)
-        self.driver.find_element(By.CSS_SELECTOR, Locator.mailInput).send_keys(mail)
-        self.driver.find_element(By.CLASS_NAME, Locator.btnPopupPay).click()
+        methods = Methods(self.driver)
+        methods.sendKeys(zipCode, Locator.zipCodeInput, 'css')
+        methods.sendKeys(phone, Locator.phoneInput, 'css')
+        methods.sendKeys(mail, Locator.mailInput, 'css')
+        methods.clickElement(Locator.btnPopupPay, 'class')
 
     def clickBackPopupEasy(self):
-        self.driver.find_element(By.CLASS_NAME, Locator.btnBack).click()
+        methods = Methods(self.driver)
+        methods.clickElement(Locator.btnBack, 'class')

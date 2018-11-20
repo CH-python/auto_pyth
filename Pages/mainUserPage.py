@@ -9,5 +9,3 @@ class MainUserPage(object):
 
     def getToPaymentPage(self):
         self.methods.waitForElement(Locator.payments, 'css').clickElement(Locator.payments, 'css')
-
-

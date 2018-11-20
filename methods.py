@@ -1,8 +1,8 @@
+import logging
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException, ElementNotVisibleException
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-import logging
 from TestforUS1.screenShot import SS
 
 class Methods(object):
@@ -36,7 +36,7 @@ class Methods(object):
             self.logger.info("Element with locator: %s By type: %s  Found!" % (locator, locatorType))
             return element
         except NoSuchElementException:
-            self.ss.ScreenShot("/NotFound%sBy%s.png" % (locator, locatorType))
+            self.ss.screenShot("/NotFound%sBy%s.png" % (locator, locatorType))
             self.logger.error("Element with locator: %s By type: %s  Not Found!" % (locator, locatorType))
             raise NoSuchElementException
 
@@ -46,7 +46,7 @@ class Methods(object):
             element.click()
             self.logger.info("Click on element with locator: %s and locator type: %s" % (locator, locatorType))
         except ElementNotInteractableException:
-            self.ss.ScreenShot("/NotСlick%sBy%s.png" % (locator, locatorType))
+            self.ss.screenShot("/NotСlick%sBy%s.png" % (locator, locatorType))
             self.logger.error("Can not click on element with locator: %s and locator"
                                  " type: %s" % (locator, locatorType))
             raise ElementNotInteractableException
@@ -58,7 +58,7 @@ class Methods(object):
             self.logger.info("Data %s successfully send to element with locator: "
                              "%s and locator type: %s" % (data, locator, locatorType))
         except ElementNotInteractableException:
-            self.ss.ScreenShot("/FailSend%sBy%s.png" % (locator, locatorType))
+            self.ss.screenShot("/FailSend%sBy%s.png" % (locator, locatorType))
             self.logger.error("Failed to send: %s to the element with "
                                  "locator:%s and locator type: %s" % (data, locator, locatorType))
             raise ElementNotInteractableException
@@ -68,7 +68,7 @@ class Methods(object):
             self.element = self.getElement(locator, locatorType).text
             self.logger.info("Text '%s' in element with locator: %s By type: %s  Found!" % (self.element, locator, locatorType))
         except NoSuchElementException:
-            self.ss.ScreenShot("/NotFound%sBy%s.png" % (locator, locatorType))
+            self.ss.screenShot("/TextNotFound%sBy%s.png" % (locator, locatorType))
             self.logger.error("Text '%s' in element with locator: %s By type:%s  Not Found!" % (locator, locatorType))
             raise NoSuchElementException
         return self.element
@@ -79,7 +79,7 @@ class Methods(object):
             self.logger.info("Attribute '%s' for element with locator:"
                              " %s By type: %s  Found!" % (attr, locator, locatorType))
         except NoSuchElementException:
-            self.ss.ScreenShot("/NotFoundAttribute%sBy%s.png" % (locator, locatorType))
+            self.ss.screenShot("/NotFoundAttribute%sBy%s.png" % (locator, locatorType))
             self.logger.error("Attribute '%s' for element with locator:"
                                     " %s By type:%s  Not Found!" % (attr, locator, locatorType))
             raise NoSuchElementException

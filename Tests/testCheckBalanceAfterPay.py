@@ -14,8 +14,6 @@ class TestTC15(unittest.TestCase):
 
     def testCheckBalanceAfterPay(self):
         driver = self.driver
-        # wait = WebDriverWait(driver, 10)
-
         welcomePage = Welcome(driver)
         loginPage = Login(driver)
         mainUserPage = MainUserPage(driver)
@@ -51,7 +49,7 @@ class TestTC15(unittest.TestCase):
         driver.get(DataTest.url['paymentsPage'])
         balanceValue2 = paymentPage.getBalanceValue()
         result = balanceValue2 - balanceValue1
-        self.assertEquals(result, float(DataTest.sumValue))
+        self.assertEquals(float(result), float(DataTest.sumValue))
 
     def tearDown(self):
         self.driver.close()

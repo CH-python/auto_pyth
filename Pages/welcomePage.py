@@ -12,6 +12,3 @@ class Welcome(object):
 
     def signUp(self):
         self.methods.clickElement(Locator.signUp, 'id')
-
-
-
