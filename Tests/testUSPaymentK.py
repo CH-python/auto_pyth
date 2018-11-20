@@ -7,14 +7,12 @@ from TestforUS1.Pages.loginPage import Login
 from TestforUS1.Pages.mainUserPage import MainUserPage
 from TestforUS1.Pages.paymentsPage import PaymentsPage, PopupUtilityDetails, PopupSelectPaymentSum, PopupEasyPay
 
-
 class Test(unittest.TestCase):
 
     def setUp(self):
         self.driver = WebdriverFactory.getWebdriver(DataTest.browser)
         self.driver.get(DataTest.url['home'])
         self.logger = logging.getLogger()
-
 
         self.welcomePage = Welcome(self.driver)
         self.loginPage = Login(self.driver)
@@ -32,31 +30,33 @@ class Test(unittest.TestCase):
         self.paymentPage.getPaymentDetails()
 
     def testSelectBill(self):
-        self.logger.info("Test select bill")
+        name = unittest.TestCase.id(self)
+        self.logger.info("_"*10 +name)
 
         self.getToPaymentDetailsPopup()
 
         actual = self.utilityDetailsPopup.getTitleDetails()
         self.assertEquals(actual, "Utility details")
 
+
     def testButtonsDownloadAndSend(self):
-        self.logger.info("Test button download and send")
+        name = unittest.TestCase.id(self)
+        self.logger.info("_"*10 + name)
 
         self.getToPaymentDetailsPopup()
 
         self.utilityDetailsPopup.clickButtonPay()
         self.selectSumPopup.clickBtnDownload()
         active = self.selectSumPopup.getAtributeDownload()
-        print(active)
         self.assertEqual(active, 'btn btn-default active')
 
         self.selectSumPopup.clickBtnSendCheck()
         active = self.selectSumPopup.getAttributeSend()
-        print(active)
         self.assertEqual(active, 'btn btn-default active')
 
     def testGetToPaymentWindow(self):
-        self.logger.info("Test get to Payment window")
+        name = unittest.TestCase.id(self)
+        self.logger.info("_"*10 +name)
 
         self.getToPaymentDetailsPopup()
 
@@ -67,7 +67,6 @@ class Test(unittest.TestCase):
         self.easyPayPopup.getToIframe()
 
         title = self.easyPayPopup.getTitleEasypay()
-        print(title)
         self.assertEqual(title, 'EasyPay')
 
     def tearDown(self):
