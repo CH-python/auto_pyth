@@ -1,19 +1,20 @@
+import logging
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException, ElementNotVisibleException
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
-import logging
+from selenium.webdriver.support.wait import WebDriverWait
 from TestforUS1.screenShot import SS
 
 class Methods(object):
 
-    logging.basicConfig(level=logging.INFO, filename='sample.log', filemode='w')
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s', filename='sample.log', filemode='w')
     logger = logging.getLogger()
+
 
     def __init__(self, driver):
         self.driver = driver
         self.ss = SS(self.driver)
-
+   
     def getLocatorType(self, locatorType):
         locatorType = locatorType.lower()
         locatorTypes = {
@@ -75,10 +76,12 @@ class Methods(object):
     def getAttribute(self, attr, locator, locatorType="css"):
         try:
             self.element = self.getElement(locator, locatorType).get_attribute(attr)
-            self.logger.info("Attribute '%s' for element with locator: %s By type: %s  Found!" % (attr, locator, locatorType))
+            self.logger.info("Attribute '%s' for element with locator:"
+                             " %s By type: %s  Found!" % (attr, locator, locatorType))
         except NoSuchElementException:
             self.ss.screenShot("/NotFoundAttribute%sBy%s.png" % (locator, locatorType))
-            self.logger.error("Attribute '%s' for element with locator: %s By type:%s  Not Found!" % (attr, locator, locatorType))
+            self.logger.error("Attribute '%s' for element with locator:"
+                                    " %s By type:%s  Not Found!" % (attr, locator, locatorType))
             raise NoSuchElementException
         return self.element
 

@@ -13,6 +13,8 @@ class TestTC4(unittest.TestCase):
         self.driver.get(DataTest.url['home'])
 
     def testGetToPaymentWindow(self):
+
+        self.driver.get("http://localhost:8080/")
         welcomePage = Welcome(self.driver)
         loginPage = Login(self.driver)
         mainUserPage = MainUserPage(self.driver)
@@ -37,4 +39,5 @@ class TestTC4(unittest.TestCase):
         self.assertEqual(title, 'EasyPay')
 
     def tearDown(self):
-        self.driver.close()
+      self.driver.close()
+

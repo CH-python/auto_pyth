@@ -39,6 +39,3 @@ class TestTC3(unittest.TestCase):
 
     def tearDown(self):
         self.driver.close()
-
-if __name__ == "__main__":
-    unittest.main()

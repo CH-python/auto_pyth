@@ -1,7 +1,5 @@
 import unittest
-import os
 import HtmlTestRunner
-import xmlrunner
 import TestforUS1.Tests.testGetToPaymentWindow
 import TestforUS1.Tests.testButtonsDownloadAndSend
 import TestforUS1.Tests.testSelectBill
@@ -13,7 +11,7 @@ import TestforUS1.Tests.testAllSviat
 
 class TestStringMethods(unittest.TestCase):
     basicSuite = unittest.TestSuite()
-    # basicSuite.addTest(unittest.makeSuite(TestforUS1.Tests.testAllKate.Test))
+    basicSuite.addTest(unittest.makeSuite(TestforUS1.Tests.testAllKate.Test))
     # basicSuite.addTest(unittest.makeSuite(TestforUS1.Tests.testAllSviat.Test))
     # basicSuite.addTest(unittest.makeSuite(TestforUS1.Tests.testSelectBill.TestTC1))
     # basicSuite.addTest(unittest.makeSuite(TestforUS1.Tests.testButtonsDownloadAndSend.TestTC3))
