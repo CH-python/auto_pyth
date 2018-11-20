@@ -1,7 +1,7 @@
 class Locator(object):
 
     #welcome page locators
-    signIn = "Sign_in2"
+    signIn = "Sign_in"
     signUp = "Sign_up"
 
     #sign in page locators as user
