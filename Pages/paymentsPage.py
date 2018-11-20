@@ -2,7 +2,6 @@ from TestforUS1.locators import Locator
 from TestforUS1.methods import Methods
 from selenium.webdriver.common.by import By
 
-
 class PaymentsPage(object):
 
     def __init__(self, driver):

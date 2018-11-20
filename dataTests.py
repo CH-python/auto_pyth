@@ -1,5 +1,3 @@
-
-
 class DataTest:
 
     url = {

@@ -2,9 +2,7 @@ from TestforUS1.locators import Locator
 from TestforUS1.methods import Methods
 import logging
 
-
 class Welcome(object):
-
 
     def __init__(self, driver):
         self.driver = driver
