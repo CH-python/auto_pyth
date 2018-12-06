@@ -22,4 +22,4 @@ class TestStringMethods(unittest.TestCase):
 
     html_report_dir = './html_report'
     runner = HtmlTestRunner.HTMLTestRunner(output=html_report_dir)
-    runner.run(basicSuite)
+    runner.run(basicSuite) 
